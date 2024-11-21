@@ -1,0 +1,42 @@
+[
+    {
+        "city_id": 2643743,
+        "city_name": "London"
+    },
+    {
+        "city_id": 5128581,
+        "city_name": "New York"
+    },
+    {
+        "city_id": 1850147,
+        "city_name": "Tokyo"
+    },
+    {
+        "city_id": 2147714,
+        "city_name": "Sydney"
+    },
+    {
+        "city_id": 2950159,
+        "city_name": "Berlin"
+    },
+    {
+        "city_id": 2968815,
+        "city_name": "Paris"
+    },
+    {
+        "city_id": 1835848,
+        "city_name": "Seoul"
+    },
+    {
+        "city_id": 1796236,
+        "city_name": "Shanghai"
+    },
+    {
+        "city_id": 3435910,
+        "city_name": "Buenos Aires"
+    },
+    {
+        "city_id": 3369157,
+        "city_name": "Cape Town"
+    }
+]
