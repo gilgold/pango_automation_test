@@ -2,7 +2,12 @@ from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from time import sleep
 
-class AndroidScraper:
+from typing import Optional
+
+from utilities.weather_analysis.scrapers.base_scraper import Scraper
+
+
+class AndroidScraper(Scraper):
     def __init__(self):
         capabilities = dict(
             platformName='Android',
@@ -18,7 +23,7 @@ class AndroidScraper:
         self.driver = webdriver.Remote("http://localhost:4723/wd/hub")
         self.driver.caps = capabilities
 
-    def get_temperature(self, city):
+    def get_temperature(self, city: str) -> Optional[float]:
         try:
             # Wait for the app to load
             sleep(5)
@@ -43,9 +48,12 @@ class AndroidScraper:
             temperature = temp_element.text  # Get the temperature as text
 
             print(f"Temperature for {city}: {temperature}°C")
-            return temperature
+            return float(temperature)
         except Exception as e:
             print(f"Error fetching temperature for {city}: {e}")
             return None
         finally:
-            self.driver.quit()
+            self.close()
+
+    def close(self):
+        self.driver.quit()

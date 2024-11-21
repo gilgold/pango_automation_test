@@ -1,10 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-class WeatherScraper:
+from utilities.weather_analysis.scrapers.base_scraper import Scraper
+
+WAIT_TIMEOUT = 10
+
+class WeatherScraper(Scraper):
     def __init__(self):
         self.driver = webdriver.Chrome()
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(WAIT_TIMEOUT)
 
     def get_temperature(self, city):
         try:
