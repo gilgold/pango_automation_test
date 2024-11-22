@@ -48,7 +48,7 @@ def seed_db(api, db_helper):
             weather_data["city_name"],
             weather_data["temperature"],
             weather_data["feels_like"],
-            weather_data["avg_temperature"]
+            weather_data["avg_temperature"],
         )
 
 def test_get_current_weather(api, db_helper):
@@ -70,8 +70,12 @@ def test_get_current_weather(api, db_helper):
 
     # Validate that the temperature and feels_like in the database match the API response
     assert db_city_name == city, f"City name mismatch. DB: {db_city_name}, API: {city}."
-    # Since API data constantly change this test will almost always fail. It would be better to
-    # update teh DB when temperature changes, rather then test for it.
+
+
+    # Since this test is for testing the weather?q=city_name (get_current_weather) api and
+    # db_seed uses "get by city_id" (get_weather_by_city_id) api this assertion will almost always fail
+    # since the 2 endpoints do not return the same value. I would remove one of the methods -
+    # either the one to get by city_id or the one by city_name but this was not part of the assignment
     assert db_temperature == temperature, (
         f"Temperature mismatch for {city}. DB: {db_temperature}, API: {temperature}."
     )
@@ -86,7 +90,6 @@ def test_get_weather_data(api, db_helper, city):
     """
     Test to validate weather data by city ID:
     - Fetches weather data from the API.
-    - Inserts data into the database.
     - Validates that database values match API response.
     """
     city_id, city_name = city["city_id"], city["city_name"]
@@ -120,6 +123,9 @@ def test_get_weather_data(api, db_helper, city):
     )
 
 def test_section_2_print_highest_avg_temperature(api, db_helper):
+    """
+    Print the city with the highest temperature
+    """
     city, highest_temp = db_helper.get_city_with_highest_avg_temperature()
     print(f"City: {city}, Highest Avg Temperature: {highest_temp}")
 

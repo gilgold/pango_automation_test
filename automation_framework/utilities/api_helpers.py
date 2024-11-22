@@ -19,9 +19,9 @@ class ApiHelper:
         print(response)
         return response
 
-    def get_weather_by_city_id(self, city_id):
+    def get_weather_by_city_id(self, city_id, units="metric", lang="en"):
         """Fetch weather data for a city using its ID."""
-        url = f"{self.BASE_URL}?id={city_id}&appid={self.API_KEY}&units=metric"
+        url = f"{self.BASE_URL}?id={city_id}&appid={self.API_KEY}&units={units}&lang={lang}"
         response = requests.get(url)
         if response.status_code != 200:
             print(f"Failed to fetch weather for city ID {city_id}: {response.status_code}")
